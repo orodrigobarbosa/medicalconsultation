@@ -7,29 +7,29 @@ import java.util.Date;
 
 @Data
 @Entity
-@Table(name= "USUARIOS")
+@Table(name = "USUARIOS")
 public class Usuario {
 
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-@Column(name = "ID_USUARIO")
-private long idUsuario;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID_USUARIO")
+    private long idUsuario;
 
-    @Column(name= "NOMEUSUARIO")
+    @Column(name = "NOMEUSUARIO")
     private String nomeUsuario;
-    @Column(name= "EMAIL")
+    @Column(name = "EMAIL")
     private String email;
-    @Column(name= "CPF")
+    @Column(name = "CPF")
     private String cpf;
-    @Column(name= "TELEFONE")
+    @Column(name = "TELEFONE")
     private String telefone;
-    @Column(name= "DATANASCIMENTO")
+    @Column(name = "DATANASCIMENTO")
     private Date dataNascimento;
 
 //    private Permissao permissao;
 
 
-    public Usuario(){
+    public Usuario() {
     }
 
     public Usuario(long idUsuario, String nomeUsuario, String email, String cpf, String telefone, Date dataNascimento) {
