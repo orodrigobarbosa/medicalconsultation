@@ -5,6 +5,8 @@ import com.medicalconsultation.demo.usuario.repository.UsuarioRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @AllArgsConstructor
 @Service
@@ -15,4 +17,8 @@ public class UsuarioService {
     public Usuario cadastrarUsuario(Usuario usuario){
         return usuarioRepository.save(usuario);
     }
+
+
+
+
 }
