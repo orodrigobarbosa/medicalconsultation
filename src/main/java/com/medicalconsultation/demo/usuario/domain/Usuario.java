@@ -26,7 +26,7 @@ public class Usuario {
     @Column(name = "DATANASCIMENTO")
     private Date dataNascimento;
 
-//    private Permissao permissao;
+   private Permissao permissao;
 
 
     public Usuario() {
