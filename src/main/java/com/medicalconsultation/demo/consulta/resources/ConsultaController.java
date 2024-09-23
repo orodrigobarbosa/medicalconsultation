@@ -18,17 +18,17 @@ public class ConsultaController {
     private ConsultaService consultaService;
 
     @PostMapping
-    public ResponseEntity<Consulta> cadastrarConsulta(@RequestBody Consulta consulta) {
+    public ResponseEntity<Consulta> cadastrarConsulta(@RequestBody Consulta consulta){
         Consulta novaConsulta = consultaService.cadastrarConsulta(consulta);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}")
+        URI uri = ServletUriComponentsBuilder
+                .fromCurrentRequestUri().path("/id")
                 .buildAndExpand(novaConsulta.getIdConsulta()).toUri();
         return ResponseEntity.created(uri).body(novaConsulta);
     }
 
     @GetMapping
-    public ResponseEntity<List<Consulta>> listarConsultas() {
-        List<Consulta> consultas = consultaService.listarConsultas();
-        return ResponseEntity.ok().body(consultas);
+    public ResponseEntity<List<Consulta>> listarUsuarios(){
+        return ResponseEntity.ok().body(consultaService.listarConsultas());
     }
 
     @GetMapping(value = "/{id}")
@@ -37,16 +37,20 @@ public class ConsultaController {
         return ResponseEntity.ok().body(consulta);
     }
 
-    @DeleteMapping(value = "/deletar/{id}")
+    @PutMapping(value = "/atualizar/{id}")
+    public ResponseEntity<Consulta> atualizarConsulta(@RequestBody Consulta consulta, @PathVariable Long id) {
+        consulta.setIdConsulta(id);
+        Consulta consultaAtualizada = consultaService.atualizarConsulta(consulta);
+        return ResponseEntity.ok().body(consultaAtualizada);
+    }
+
+
+
+    @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> deletarConsulta(@PathVariable Long id) {
         consultaService.deletarConsulta(id);
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping(value = "/atualizar/{id}")
-    public ResponseEntity<Consulta> atualizarConsultaPorId(@PathVariable Long id, @RequestBody Consulta consulta) {
-        Consulta consultaAtualizada = consultaService.atualizarConsulta(consulta, id);
-        return ResponseEntity.ok().body(consultaAtualizada);
-    }
 
 }

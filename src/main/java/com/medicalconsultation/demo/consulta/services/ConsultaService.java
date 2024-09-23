@@ -2,44 +2,58 @@ package com.medicalconsultation.demo.consulta.services;
 
 import com.medicalconsultation.demo.consulta.domain.Consulta;
 import com.medicalconsultation.demo.consulta.repositories.ConsultaRepository;
-import com.medicalconsultation.demo.usuario.domain.Usuario;
+import com.medicalconsultation.demo.exceptions.ExceptionDataIntegrityViolation;
 import lombok.AllArgsConstructor;
 import org.hibernate.ObjectNotFoundException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @AllArgsConstructor
 @Service
 public class ConsultaService {
 
 
-
     private ConsultaRepository consultaRepository;
 
-    public Consulta cadastrarConsulta(Consulta consulta) {
+
+    public Consulta cadastrarConsulta(Consulta consulta){
         consulta.setIdConsulta(null);
         return consultaRepository.save(consulta);
-    }
-
-    public Consulta buscarConsulta(Long id) {
-        return consultaRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Consulta não encontrado! ID: ", id));
     }
 
     public List<Consulta> listarConsultas() {
         return consultaRepository.findAll();
     }
 
-    public void deletarConsulta(Long id){
-        Consulta consulta = buscarConsulta(id);
-        consultaRepository.delete(consulta);
+    public Consulta buscarConsulta(Long id) {
+        Optional<Consulta> consulta = consultaRepository.findById((id));
+        return consulta.orElseThrow(() -> new ObjectNotFoundException("Consulta não encontrado! ID: ", id));
     }
 
-    public Consulta atualizarConsulta(Consulta consulta, Long id) {
-        Consulta upConsulta = buscarConsulta(id);
-        upConsulta.setDataConsulta(consulta.getDataConsulta());
-        upConsulta.setProfissional(consulta.getProfissional());
-        upConsulta.setEspecialidade(consulta.getEspecialidade());
-        return consultaRepository.save(upConsulta);
+    public void deletarConsulta(Long id){
+        buscarConsulta(id);
+        try{
+            consultaRepository.deleteById(id);
+        } catch (DataIntegrityViolationException e){
+            throw new ExceptionDataIntegrityViolation("Não é possível excluir, porque há entidades relacionadas.") ;
+        }
+    }
+
+    public Consulta atualizarConsulta(Consulta consulta) {
+        Consulta novaConsulta = buscarConsulta(consulta.getIdConsulta());
+        updateData(novaConsulta, consulta);
+        return consultaRepository.save(novaConsulta);
+    }
+
+    private void updateData(Consulta novaConsulta, Consulta consulta){
+        novaConsulta.setDataConsulta(consulta.getDataConsulta());
+        novaConsulta.setProfissional(consulta.getProfissional());
+        novaConsulta.setEspecialidade(consulta.getEspecialidade());
     }
 }
+
+
+
