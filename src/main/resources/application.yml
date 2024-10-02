@@ -4,3 +4,4 @@ spring:
   java:
     runtime:
       version: '17'
+

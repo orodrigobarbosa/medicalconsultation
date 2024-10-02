@@ -2,6 +2,7 @@ package com.medicalconsultation.demo.usuario.domain;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.antlr.v4.runtime.misc.NotNull;
 
 import java.util.Date;
 
@@ -25,6 +26,8 @@ public class Usuario {
     private String telefone;
     @Column(name = "DATANASCIMENTO")
     private Date dataNascimento;
+
+
 
    private Permissao permissao;
 
