@@ -1,4 +1,4 @@
-package com.medicalconsultation.demo.usuario.config;
+package com.medicalconsultation.demo.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
