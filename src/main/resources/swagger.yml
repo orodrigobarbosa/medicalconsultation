@@ -7,21 +7,23 @@
   "servers": [
     {
       "url": "http://localhost:8080",
-      "description": "Generated server url"
+      "description": "Servidor Local"
     }
   ],
   "paths": {
     "/usuario/atualizar/{id}": {
       "put": {
         "tags": [
-          "usuario-controller"
+          "Usuário"
         ],
+        "summary": "Atualiza um usuário pelo ID",
         "operationId": "atualizarUsuarioViaId",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
+            "description": "ID do usuárioo",
             "schema": {
               "type": "integer",
               "format": "int64"
@@ -29,6 +31,7 @@
           }
         ],
         "requestBody": {
+          "description": "Dados para atualizar o usuário",
           "content": {
             "application/json": {
               "schema": {
@@ -40,9 +43,9 @@
         },
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Usuário atualizado com sucesso!",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Usuario"
                 }
@@ -55,14 +58,16 @@
     "/consulta/atualizar/{id}": {
       "put": {
         "tags": [
-          "consulta-controller"
+          "Consulta"
         ],
+        "summary": "Atualiza uma consulta pelo ID",
         "operationId": "atualizarConsulta",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
+            "description": "ID da consulta",
             "schema": {
               "type": "integer",
               "format": "int64"
@@ -70,6 +75,7 @@
           }
         ],
         "requestBody": {
+          "description": "Dados para atualizar a consulta",
           "content": {
             "application/json": {
               "schema": {
@@ -81,9 +87,9 @@
         },
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Consulta atualizada com sucesso!",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Consulta"
                 }
@@ -96,14 +102,15 @@
     "/usuario": {
       "get": {
         "tags": [
-          "usuario-controller"
+          "Usuário"
         ],
+        "summary": "Lista todos os usuários",
         "operationId": "buscarTodosUsuarios",
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Usuários listados com sucesso!",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
@@ -117,10 +124,12 @@
       },
       "post": {
         "tags": [
-          "usuario-controller"
+          "Usuário"
         ],
+        "summary": "Cadastra um novo usuário",
         "operationId": "cadastrarUsuario",
         "requestBody": {
+          "description": "Dados do novo usuário",
           "content": {
             "application/json": {
               "schema": {
@@ -132,9 +141,9 @@
         },
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Usuário cadastrado com sucesso!",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Usuario"
                 }
@@ -147,14 +156,15 @@
     "/consulta": {
       "get": {
         "tags": [
-          "consulta-controller"
+          "Consulta"
         ],
-        "operationId": "listarUsuarios",
+        "summary": "Lista todas as consultas",
+        "operationId": "listarConsultas",
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Consultas listadas",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
@@ -168,10 +178,12 @@
       },
       "post": {
         "tags": [
-          "consulta-controller"
+          "Consulta"
         ],
+        "summary": "Cadastra uma nova consulta",
         "operationId": "cadastrarConsulta",
         "requestBody": {
+          "description": "Dados da nova consulta",
           "content": {
             "application/json": {
               "schema": {
@@ -183,9 +195,9 @@
         },
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Consulta cadastrada",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Consulta"
                 }
@@ -198,14 +210,16 @@
     "/usuario/{id}": {
       "get": {
         "tags": [
-          "usuario-controller"
+          "Usuário"
         ],
+        "summary": "Busca um usuário pelo ID",
         "operationId": "buscarUsuarioPorId",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
+            "description": "ID do usuário",
             "schema": {
               "type": "integer",
               "format": "int64"
@@ -214,9 +228,9 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Usuário encontrado",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Usuario"
                 }
@@ -229,14 +243,16 @@
     "/consulta/{id}": {
       "get": {
         "tags": [
-          "consulta-controller"
+          "Consulta"
         ],
-        "operationId": "buscarConsulta",
+        "summary": "Busca uma consulta pelo ID",
+        "operationId": "buscarConsultaPorId",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
+            "description": "ID da consulta",
             "schema": {
               "type": "integer",
               "format": "int64"
@@ -245,9 +261,9 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Consulta encontrada",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Consulta"
                 }
@@ -258,14 +274,16 @@
       },
       "delete": {
         "tags": [
-          "consulta-controller"
+          "Consulta"
         ],
+        "summary": "Deleta uma consulta pelo ID",
         "operationId": "deletarConsulta",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
+            "description": "ID da consulta",
             "schema": {
               "type": "integer",
               "format": "int64"
@@ -274,7 +292,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Consulta deletada"
           }
         }
       }
@@ -282,14 +300,16 @@
     "/usuario/delete/{id}": {
       "delete": {
         "tags": [
-          "usuario-controller"
+          "Usuário"
         ],
+        "summary": "Deleta um usuário pelo ID",
         "operationId": "deletarUsuarioPorId",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
+            "description": "ID do usuário",
             "schema": {
               "type": "integer",
               "format": "int64"
@@ -298,7 +318,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Usuário deletado"
           }
         }
       }
