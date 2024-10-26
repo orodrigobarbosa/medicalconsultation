@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
+
 @Data
 @Getter
 @Setter
@@ -27,8 +28,10 @@ public class Consulta {
     @Column(name= "ESPECIALIDADE")
     private String especialidade;
 
+    @Column(name= "DESCRICAO")
+    private String descricao;
+
     @ManyToOne
     @JoinColumn(name = "idUsuario")
     private Usuario usuario;
-
 }
