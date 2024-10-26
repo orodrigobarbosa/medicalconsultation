@@ -47,7 +47,7 @@ public class ConsultaService {
         updateData(novaConsulta, consulta);
         return consultaRepository.save(novaConsulta);
     }
-
+//atualizar os dados da consulta
     private void updateData(Consulta novaConsulta, Consulta consulta){
         novaConsulta.setDataConsulta(consulta.getDataConsulta());
         novaConsulta.setProfissional(consulta.getProfissional());
