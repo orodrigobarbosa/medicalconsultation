@@ -2,6 +2,7 @@ package com.medicalconsultation.demo.usuario.domain;
 
 public enum Permissao {
     ADMIN("ADMIN"),
+
     SECRETARIO ("SECRETARIO"),
 
     PACIENTE ("PACIENTE");

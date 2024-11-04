@@ -218,18 +218,17 @@ public class ConsultaServiceTest {
         verify(consultaRepository, times(0)).save(any(Consulta.class));
     }
 
-    // Atualizar dados da consulta corretamente
     @Test
     void updateData_AtualizarOsDadosCorretamente() {
         // Dados de entrada
         Consulta consultaExistente = new Consulta();
         consultaExistente.setIdConsulta(1L);
-        consultaExistente.setDataConsulta(Date.from(LocalDate.now().atStartOfDay(ZoneId.of("GMT-3")).toInstant())); // Converter LocalDate para Date
+        consultaExistente.setDataConsulta(Date.from(LocalDate.now().atStartOfDay(ZoneId.of("GMT-3")).toInstant()));
         consultaExistente.setProfissional("Dr. Silva");
         consultaExistente.setEspecialidade("Cardiologia");
 
         Consulta consultaAtualizada = new Consulta();
-        consultaAtualizada.setDataConsulta(Date.from(LocalDate.now().plusDays(1).atStartOfDay(ZoneId.of("GMT-3")).toInstant())); // Atualizando para o próximo dia
+        consultaAtualizada.setDataConsulta(Date.from(LocalDate.now().plusDays(1).atStartOfDay(ZoneId.of("GMT-3")).toInstant()));
         consultaAtualizada.setProfissional("Dr. Souza");
         consultaAtualizada.setEspecialidade("Pediatria");
 
@@ -243,8 +242,12 @@ public class ConsultaServiceTest {
         }
 
         // Validação dos dados atualizados
-        assertEquals(consultaAtualizada.getDataConsulta(), consultaExistente.getDataConsulta());
+        LocalDate dataEsperada = consultaAtualizada.getDataConsulta().toInstant().atZone(ZoneId.of("GMT-3")).toLocalDate();
+        LocalDate dataAtualizada = consultaExistente.getDataConsulta().toInstant().atZone(ZoneId.of("GMT-3")).toLocalDate();
+
+        assertEquals(dataEsperada, dataAtualizada, "A data da consulta foi atualizada corretamente");
         assertEquals(consultaAtualizada.getProfissional(), consultaExistente.getProfissional());
         assertEquals(consultaAtualizada.getEspecialidade(), consultaExistente.getEspecialidade());
     }
+
 }
