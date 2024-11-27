@@ -48,9 +48,9 @@ public class SecurityConfig {
 
         //
         auth.inMemoryAuthentication()
-                .withUser("RodrigoBarbosa").password(passwordEncoder.encode("12345")).roles("ADMIN")
+                .withUser("Rodrigo").password(passwordEncoder.encode("12345")).roles("ADMIN")
                 .and()
-                .withUser("Fulano").password(passwordEncoder.encode("123")).roles("SECRETARIO")
+                .withUser("Silva").password(passwordEncoder.encode("123")).roles("SECRETARIO")
                 .and()
                 .withUser("Cicrano").password(passwordEncoder.encode("1234")).roles("PACIENTE");
     }
