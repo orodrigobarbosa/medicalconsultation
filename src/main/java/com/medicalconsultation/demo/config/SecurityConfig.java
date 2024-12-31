@@ -16,7 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-@EnableWebSecurity //habilita as configuracoes de seguranda da aplicacao
+@EnableWebSecurity //habilita as configuracoes de seguranca da aplicacao
 public class SecurityConfig {
 
     //metodo que filtra os metodos de requisicoes
